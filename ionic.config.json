@@ -1,5 +1,5 @@
 {
-  "name": "1st-ionic-app",
+  "name": "Expense Tracker",
   "integrations": {
     "capacitor": {}
   },

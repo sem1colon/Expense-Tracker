@@ -1,20 +1,64 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Expense Tracker</ion-title>
   </ion-toolbar>
 </ion-header>
+<ion-content>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-grid>
+    <!-- Displaying Added Expenses -->
+    <ion-row *ngIf="expenseList!= null && expenseList.length>0">
+      <ion-col size-md="6" offset-md="3">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Expenses</ion-card-title>
+          </ion-card-header>
+          <ion-card-content></ion-card-content>
+          <ion-card-content>
+            <ion-list>
+              <ion-item *ngFor="let expense of expenseList">
+                <ion-label class="ion-text-center">{{expense.name}}</ion-label>
+                <ion-label class="ion-text-center">
+                  -
+                </ion-label>
+                <ion-label class="ion-text-center">₹{{expense.amount}}</ion-label>
+                <ion-button fill="clear" (click)="removeFromExpenses(expense)">
+                  <ion-icon name="trash-outline" slot="icon-only" color="danger"></ion-icon>
+                </ion-button>
+              </ion-item>
+            </ion-list>
+            <h4 class="ion-text-center">Total Expenses : ₹{{totalExpenses}}</h4>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <!-- User Input  -->
+    <ion-row>
+      <ion-col size-md="6" offset-md="3">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Want to add a new expense?</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-item>
+              <ion-label position="floating">Expense name</ion-label>
+              <ion-input type="text" #name></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Expense amount</ion-label>
+              <ion-input type="number" #amount></ion-input>
+            </ion-item>
+            <div class="ion-margin-vertical ion-text-right">
+              <ion-button fill="outline" color="danger" slot="end" (click)="name.value=''; amount.value=''">
+                <ion-icon name="close-outline"></ion-icon>Clear
+              </ion-button>
+              <ion-button slot="end" (click)="addToExpenses(name.value,amount.value);name.value=''; amount.value=''">
+                <ion-icon name="add-outline"></ion-icon>Add
+              </ion-button>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
