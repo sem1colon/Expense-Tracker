@@ -1,0 +1,15 @@
+{
+  "appId": "com.sem1colon.expensetracker",
+  "appName": "Expense Tracker",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 5000,
+      "showSpinner": true,
+      "androidSpinnerStyle": "horizontal"
+    }
+  },
+  "cordova": {}
+}
